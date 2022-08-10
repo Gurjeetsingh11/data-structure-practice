@@ -110,7 +110,7 @@ int main()
 
 
 //2 stacks in array
-#include<iostream>
+/*#include<iostream>
 using namespace std;
 
 class stack{
@@ -185,4 +185,260 @@ int main()
 	st.pop1();
 	cout<<st.top1<<endl;
 	
+}*/
+
+
+//reverse a sentence
+/*#include<iostream>
+#include<stack>
+using namespace std;
+void reversesentence(string s)
+{
+	stack<string>st;
+	for(int i=0;i<s.length();i++)
+	{
+		string word="";
+		while(s[i]!=' '&&i<s.length())
+		{
+			word+=s[i];
+			i++;
+		}
+		st.push(word);
+	}
+	while(!st.empty())
+	{
+		cout<<st.top()<<" ";
+		st.pop();
+	}
+	cout<<endl;
 }
+int main()
+{
+	string s;
+	getline(cin,s);
+	reversesentence(s);
+}*/
+
+//reverse a stack
+/*#include<iostream>
+#include<stack>
+using namespace std;
+void insertatbottom(stack<int>&st,int ele)
+{
+	if(st.empty())
+	{
+		st.push(ele);
+		return;
+	}
+	int topele=st.top();
+	st.pop();
+	insertatbottom(st,ele);
+	st.push(topele);
+}
+void reverse(stack<int>&st)
+{
+	if(st.empty())
+	{
+		return;
+	}
+	int ele=st.top();
+	st.pop();
+	reverse(st);
+	insertatbottom(st,ele);
+}
+int main()
+{
+	stack<int>st;
+	st.push(1);
+	st.push(2);
+	st.push(3);
+	st.push(4);
+	
+	cout<<st.top()<<endl;
+	reverse(st);
+	while(!st.empty())
+	{
+		cout<<st.top()<<" ";
+		st.pop(); 
+	}
+	cout<<endl;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//prefix evaluation
+/*#include<iostream>
+#include<stack>
+#include<math.h>
+using namespace std;
+int prefixevaluation(string s)
+{
+	stack<int>st;
+	for(int i=s.length()-1;i>=0;i--)
+	{
+		if(s[i]>='0' && s[i]<='9')
+		{
+			st.push( s[i] -'0');
+		}
+		else
+		{
+			//element jab stack me push krege uske element pop krne ke pehle op1 and pop krke op2 mein dalege
+			int op1=st.top();
+			st.pop();
+			int op2=st.top();
+			st.pop();
+			
+			switch(s[i])
+			{
+				case '+':
+					st.push(op1+op2);
+					break;
+				case '-':
+					st.push(op1-op2);
+					break;
+				case '*':
+					st.push(op1*op2);
+					break;
+				case '/':
+	  				st.push(op1/op2);
+					break;
+				case '^':
+					st.push(pow(op1,op2));
+					break;
+			}
+		}	
+	}return st.top();
+}
+int main()
+{
+	cout<<prefixevaluation("-+7*45+20")<<endl;
+}*/
+
+//postfix evaluation
+/*#include<iostream>
+#include<stack>
+#include<math.h>
+using namespace std;
+int postfixevaluation(string s)
+{
+	stack<int>st;
+	for(int i=0;i<s.length();i++)
+	{
+		if(s[i]>='0' && s[i]<='9')
+		{
+			st.push(s[i]-'0');
+		}
+		else
+		{
+			int op2=st.top();
+			st.pop();
+			int op1=st.top();
+			st.pop();
+		switch(s[i])
+		{
+			case '+':
+				st.push(op1+op2);
+				break;
+			case '-':
+				st.push(op1-op2);
+				break;
+			case '*':
+				st.push(op1*op2);
+				break;
+			case '/':
+				st.push(op1/op2);
+				break;
+			case '^':
+				st.push(pow(op1,op2));
+				break;
+		}
+		}
+	}
+	return st.top();
+	
+}
+int main()
+{
+	cout<<postfixevaluation("46+2/5*7+");
+}*/
+
+//balanced parenthesis
+
+
+/*#include<iostream>
+#include<stack>
+using namespace std;
+bool isvalid(string s)
+{
+	int n=s.size();
+	stack<char>st;
+	bool ans=true;
+	for(int i=0;i<n;i++)
+	{
+		if(s[i]=='{' || s[i]=='[' || s[i]=='(')
+		{
+			st.push(s[i]);	
+		}
+		else if(s[i] == '}')
+		{
+			if(!s.empty() && st.top()=='{')
+				st.pop();
+			else
+				ans=false;
+				break;
+		}
+		else if(s[i]==')')
+		{
+			if(!st.empty() && st.top()=='('){
+				st.pop();	
+			}
+			else{
+				ans=false;
+				break;				
+			}
+
+		}
+		else if(s[i]==']')
+		{
+			if(!st.empty() && st.top()=='['){
+				st.pop();				
+			}
+			else
+			{
+				ans=false;
+				break;				
+			}
+		}	
+	}
+	
+	if(!st.empty())
+	{
+		return false;
+	}
+	else
+	{
+		return ans;
+	}
+}
+int main()
+{
+	string s="{([])";
+	if(isvalid(s))
+		cout<<"valid string ";
+	else
+		cout<<"invalid string";
+}*/
