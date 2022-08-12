@@ -390,6 +390,7 @@ int main()
 	cout<<middle(head);
 }*/
 
+//REverse k nodes in linked list
 
 /*#include<iostream>
 using namespace std;
@@ -454,6 +455,7 @@ int main()
 	
 }*/
 
+//making and detecting the cycle in linked list
 
 #include<iostream>
 using namespace std;
@@ -504,27 +506,7 @@ bool detectcycle(Node* &head)
 	}
 	return false;
 }
-Node *kreverse(Node* &head,int k)
-{
-	
-	Node *curr=head;
-	Node *prev=NULL;
-	Node *next;
-	int count=0;
-	while(curr!=NULL && count<k)
-	{
-		next=curr->next;
-		curr->next=prev;
-		curr=next;
-		prev=curr;
-		count++;
-	}
-	if(next!=NULL)
-	{
-		head->next=kreverse(next,k);
-	}
-	return prev;
-}
+
 
 print(Node* &head)
 {
