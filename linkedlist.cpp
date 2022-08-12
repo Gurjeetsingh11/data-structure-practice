@@ -455,62 +455,51 @@ int main()
 	
 }*/
 
-//making and detecting the cycle in linked list
 
-#include<iostream>
+//Remove duplicates from the linked list
+
+/*#include<iostream>
 using namespace std;
 class Node{
 	public:
-		int data;
-		Node* next;
+	int data;
+	Node *next;
 	Node(int d)
 	{
-		this->data=d;
-		this->next=NULL;
+		data=d;
+		next=NULL;
 	}
 };
-void inserthead(Node*&head ,int d)
+
+void inserthead(Node *&head,int d)
 {
-	Node* temp=new Node(d);
+	Node*temp=new Node(d);
 	temp->next=head;
 	head=temp;
 }
-void makecycle(Node* &head,int pos)
+Node* checkduplicate(Node *&head)
+{
+	Node *curr=head;
+	while(curr!=NULL && curr->next!=NULL)
+	{
+		if(curr->data == curr->next->data)
+		{
+			Node *next_next=curr->next->next;
+			Node *todelete=curr->next;
+			delete todelete;
+			curr->next=next_next;	
+		}
+		else
+		{
+			curr=curr->next;
+		}	
+	}
+	return head;	
+}
+
+void print(Node *head)
 {
 	Node *temp=head;
-	Node *startnode;
-	int count=1;
-	while(temp->next != NULL)
-	{
-		if(count==pos)
-		{
-			startnode = temp;
-			temp=temp->next;
-			
-		}count++;
-	}
-	temp->next=startnode;
-}
-bool detectcycle(Node* &head)
-{
-	Node *slow=head;
-	Node *fast=head;
-	
-	while(fast!=NULL && fast->next!=NULL)
-	{
-		slow=slow->next;
-		fast=fast->next->next;
-		
-		if(fast==slow)
-			return true;
-	}
-	return false;
-}
-
-
-print(Node* &head)
-{
-	Node*temp=head;
 	while(temp!=NULL)
 	{
 		cout<<temp->data<<" ";
@@ -520,14 +509,18 @@ print(Node* &head)
 }
 int main()
 {
-	Node * node1=new Node(10);
-	Node* &head=node1;
-	inserthead(head,20);
-	inserthead(head,30);
-	inserthead(head,40);
-	inserthead(head,50);	
+	Node *node1=new Node(1);
+	Node *head=node1;
+	inserthead(head,2);
+	inserthead(head,2);
+	inserthead(head,3);
+	inserthead(head,3);
+	inserthead(head,4);
+	inserthead(head,4);
+	inserthead(head,4);
+	
 	print(head);
-	makecycle(head,3);
-	print(head);
-	detectcycle(head);
-}
+	Node *newhead=checkduplicate(head);
+	print(newhead);
+	
+}*/
